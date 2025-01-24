@@ -1,0 +1,31 @@
+---
+- name: Install Docker Compose
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-{{ ansible_architecture }}"
+    dest: /usr/local/bin/docker-compose
+    mode: '0755'
+
+- name: Create application directory
+  file:
+    path: /home/ec2-user/docker-compose-app
+    state: directory
+
+- name: Copy Docker Compose file
+  copy:
+    src: docker-compose.yml
+    dest: /home/ec2-user/docker-compose-app/docker-compose.yml
+
+- name: Copy Dockerfile
+  copy:
+    src: Dockerfile
+    dest: /home/ec2-user/docker-compose-app/Dockerfile
+
+- name: Copy Nginx configuration
+  copy:
+    src: nginx.conf
+    dest: /home/ec2-user/docker-compose-app/nginx.conf
+
+- name: Start Docker Compose
+  shell: |
+    cd /home/ec2-user/docker-compose-app
+    docker-compose up -d

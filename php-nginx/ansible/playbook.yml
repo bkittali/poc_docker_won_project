@@ -1,0 +1,6 @@
+---
+- name: Deploy PHP + Nginx Application
+  hosts: docker
+  become: true
+  roles:
+    - docker
