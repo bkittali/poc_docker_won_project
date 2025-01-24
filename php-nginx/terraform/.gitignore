@@ -1,0 +1,21 @@
+# Terraform hidden directories
+.terraform/
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Terraform backup files
+*.tfvars
+*.tfvars.json
+*.backup
+
+# Crash log files
+crash.log
+
+# Terraform plan files
+*.tfplan
+
+# Ignore any sensitive files
+.terraformrc
+terraform.rc
