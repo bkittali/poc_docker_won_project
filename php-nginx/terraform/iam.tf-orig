@@ -13,6 +13,12 @@ resource "aws_iam_role" "ecs_ecr_role" {
       }
     ]
   })
+
+  lifecycle {
+    create_before_destroy = false
+    ignore_changes = all
+  }
+
 }
 
 resource "aws_iam_role_policy" "ecs_ecr_policy" {

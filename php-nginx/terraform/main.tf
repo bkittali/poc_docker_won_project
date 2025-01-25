@@ -8,7 +8,7 @@ resource "aws_instance" "dockerhost" {
   subnet_id     = aws_subnet.public.id
   # Associate the security group
   security_groups = [aws_security_group.docker_sg.id]
-  iam_instance_profile = aws_iam_instance_profile.ecs_ecr_instance_profile.name
+  #iam_instance_profile = aws_iam_instance_profile.ecs_ecr_instance_profile.name
   key_name      = "won_ls_key"
 
   tags = {
@@ -34,7 +34,7 @@ resource "aws_instance" "dockerhost" {
 
 resource "null_resource" "deploy_app" {
   provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ./ansible/dynamic_inventory.sh ansible/playbook.yml"
+    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ../ansible/dynamic_inventory.sh ../ansible/playbook.yml"
   }
 
   depends_on = [aws_instance.dockerhost]

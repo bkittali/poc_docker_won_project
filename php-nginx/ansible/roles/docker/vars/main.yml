@@ -1,0 +1,3 @@
+---
+compose_version: "v2.20.0"                # Docker Compose version
+compose_path: "/usr/local/bin/docker-compose" # Installation path
