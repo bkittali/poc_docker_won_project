@@ -31,11 +31,3 @@ resource "aws_instance" "dockerhost" {
     host        = self.public_ip
   }
 }
-
-resource "null_resource" "deploy_app" {
-  provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ../ansible/dynamic_inventory.sh ../ansible/playbook.yml"
-  }
-
-  depends_on = [aws_instance.dockerhost]
-}
